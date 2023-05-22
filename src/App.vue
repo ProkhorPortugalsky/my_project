@@ -13,7 +13,7 @@
             </v-list-item>
             <v-divider></v-divider>
             <v-list dense>
-                <v-list-item v-for="link in links" :key="link.title">
+                <v-list-item v-for="link in links" :key="link.title" :to="link.url">
                     <template v-slot:prepend>
                         <v-icon :icon="link.icon"></v-icon>
                     </template>
