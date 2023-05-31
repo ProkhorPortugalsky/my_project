@@ -38,9 +38,10 @@ export default {
     },
     actions: {
         createAd({commit},payload){
-            payload.id = Math.random()
-                commit('createAd', payload)
-            }        
+            //payload.id = Math.random()
+            payload.id = 10
+            commit('createAd', payload)
+        }        
     },
     getters: {
         ads(state) {
