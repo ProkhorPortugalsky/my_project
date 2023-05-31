@@ -35,16 +35,16 @@ export default {
     actions: {},
     getters: {
         ads(state) {
-			return state.ads
-		},
-		promoAds(state) {
-			return state.ads.filter(ad => {
-				return ad.promo
-			})
-		},
-		myAds(state) {
-			return state.ads
-	    }
+            return state.ads
+        },
+        promoAds(state) {
+            return state.ads.filter(ad => {
+                return ad.promo
+            })
+        },
+        myAds(state) {
+            return state.ads
+        }
     }
     }
         
