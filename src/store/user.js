@@ -1,10 +1,10 @@
-// class User {
-//     constructor(id, email, password) {
-//     this.id = id
-//     this.email = email
-//     this.password = password
-//     }
-//}
+class User {
+    constructor(id, email, password) {
+    this.id = id
+    this.email = email
+    this.password = password
+    }
+}
 export default {
 	state: {
         user: null
@@ -16,20 +16,27 @@ export default {
         }            
     },
 	actions: {
-        registerUser({commit},{email, password}){
+        async registerUser({commit},{email, password}) {
             commit('clearError')
             commit('setLoading', true)
-            if(email == "");
-            if(password == "");
-            // fb.auth().createUserWithEmailAndPassword(email,password).then(response => {
-            //     commit('setUser', new User(response.user.uid))
-            //     commit('setLoading', false)
-            // }).catch( error => {
-            //     commit('setLoading', false)
-            //     commit('setError', error.message)
-            //     throw error
-            // })
-        }        
+            //Здесь выполняется запрос на сервер
+            let isRequestOk = true
+            let promise = new Promise(function(resolve) {
+                setTimeout(() => resolve('Done'), 3000);
+            });
+            
+            
+            if (isRequestOk) {
+                await promise.then(()=> {
+                commit('setUser', new User(1, email, password))
+                commit('setLoading', false)})
+            } else {
+            await promise.then(()=> {
+                commit('setLoading', false)
+                commit('setError', 'Ошибка регистрации')
+                throw 'Упс... Ошибка регистрации'})
+            }
+        }    
     },
 	getters: {
         user(state) {
