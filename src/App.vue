@@ -42,6 +42,14 @@
         <v-main>
             <router-view></router-view>
         </v-main>
+        <v-snackbar v-model="error" multi-line :timeout="2000" color="primary">
+            {{ error }}
+            <template v-slot:actions>
+                <v-btn variant="text" @click="closeError">
+                    Close
+                </v-btn>
+            </template>
+        </v-snackbar>
     </v-app>
 </template>
 
@@ -58,6 +66,18 @@ export default {
             {title:"My ads", icon:"mdi-view-list-outline", url:"/list"}
         ]
     }
-  }
+  },
+  computed: {
+    error () {
+      return this.$store.getters.error
+   }
+    },
+    methods: {
+    closeError () {
+      this.$store.dispatch('clearError')
+    }
+ }
+
+
 }
 </script>
