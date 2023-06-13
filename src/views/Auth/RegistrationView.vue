@@ -36,7 +36,7 @@
 					</v-card-text>
 					<v-card-actions>
 						<v-spacer></v-spacer>
-						<v-btn color="primary" @click="onSubmit" :disabled="!valid">Create Account</v-btn>
+						<v-btn color="primary" @click="onSubmit" :disabled="!valid || loading" :loading="loading">Create Account</v-btn>
 					</v-card-actions>
 				</v-card>
 			</v-col>
@@ -63,6 +63,11 @@
 					v => !!v || 'Name is required',
 					v => v === this.password || 'Password should match'
 				]
+			}
+		},
+		computed: {
+			loading() {
+				return this.$store.getters.loading
 			}
 		},
 		methods: {

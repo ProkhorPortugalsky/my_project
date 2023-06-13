@@ -1,10 +1,10 @@
-class User {
-    constructor(id, email, password) {
-    this.id = id
-    this.email = email
-    this.password = password
-    }
-}
+// class User {
+//     constructor(id, email, password) {
+//     this.id = id
+//     this.email = email
+//     this.password = password
+//     }
+//}
 export default {
 	state: {
         user: null
@@ -19,14 +19,16 @@ export default {
         registerUser({commit},{email, password}){
             commit('clearError')
             commit('setLoading', true)
-            fb.auth().createUserWithEmailAndPassword(email,password).then(response => {
-                commit('setUser', new User(response.user.uid))
-                commit('setLoading', false)
-            }).catch( error => {
-                commit('setLoading', false)
-                commit('setError', error.message)
-        throw error
-            })
+            if(email == "");
+            if(password == "");
+            // fb.auth().createUserWithEmailAndPassword(email,password).then(response => {
+            //     commit('setUser', new User(response.user.uid))
+            //     commit('setLoading', false)
+            // }).catch( error => {
+            //     commit('setLoading', false)
+            //     commit('setError', error.message)
+            //     throw error
+            // })
         }        
     },
 	getters: {
