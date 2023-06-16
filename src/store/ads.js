@@ -77,6 +77,6 @@ export default {
 				return state.ads.find(ad => ad.id == id)
             }
         }
-    }
+    }        
     }
         
