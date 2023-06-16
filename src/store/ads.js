@@ -6,7 +6,8 @@ export default {
             desc:"First Desc",
             promo: true,
             src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
-            id:"1"
+            id:"1",
+            userId: "1"
         },
         {
             title:"Second",
