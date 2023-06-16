@@ -15,7 +15,7 @@
 
 					<v-card-actions>
 						<v-spacer></v-spacer>
-						<modal-dialog :ad="ad"></modal-dialog>
+						<modal-dialog :ad="ad" v-if="isOwner"></modal-dialog>
 						<v-btn class="success">Buy</v-btn>
 					</v-card-actions>
 
@@ -34,7 +34,10 @@
 			ad() {
 				const id = this.id
 				return this.$store.getters.adById(id)
-			}
+			},
+			isOwner () {
+				return this.ad.ownerId === 		this.$store.getters.user.id
+			}			
 		},
 		components: {
 			'modal-dialog': EditAdModal
