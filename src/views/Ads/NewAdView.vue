@@ -61,6 +61,8 @@
 						src: "https://cdn.vuetifyjs.com/images/cards/cooking.png"
 					}
 					this.$store.dispatch("createAd", ad)
+					
+
 				}
 			}
 		}

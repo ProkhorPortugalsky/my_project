@@ -14,21 +14,24 @@ export default {
             desc:"Second Desc",
             promo: true,
             src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
-            id:"2"
+            id:"2",
+            userId: "1"
         },
         {
             title:"Third",
             desc:"Thitd Desc",
             promo: true,
             src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
-            id:"3"
+            id:"3",
+            userId: "1"
         },
         {
             title:"Fouth",
             desc:"Fouth Desc",
             promo: true,
             src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
-            id:"4"
+            id:"4",
+            userId: "2"
         }
         ]
     },
@@ -69,8 +72,10 @@ export default {
                 return ad.promo
             })
         },
-        myAds(state) {
-            return state.ads
+        myAds(state, getters) {
+            return state.ads.filter(ad => {
+                    return ad.userId == getters.user.id
+                })                          
         },
         adById(state) {
             return id => {
