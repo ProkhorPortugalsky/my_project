@@ -68,7 +68,6 @@
                             this.phone = ""
                             this.modal = false
                         })
-                        this.modal = false
                     }
                 }
             }
