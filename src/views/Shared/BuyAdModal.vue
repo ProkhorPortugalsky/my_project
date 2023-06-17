@@ -27,8 +27,8 @@
                 <v-col cols="12">
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn @click="onClose">Close</v-btn>
-                        <v-btn @click="onSave" color="success">Buy It!</v-btn>
+                        <v-btn @click="onClose" :disabled="localLoading">Close</v-btn>
+                        <v-btn @click="onSave" :disabled="localLoading" :loading="localLoading" color="success">Buy It!</v-btn>
                     </v-card-actions>
                 </v-col>
              </v-row>
@@ -43,7 +43,8 @@
                 return {
                     modal: false,
                     name: "",
-                    phone: ""
+                    phone: "",
+                    localLoading: false
                 }
             },
             methods: {
@@ -54,11 +55,18 @@
                 },
                 onSave (){
                     if (this.name !== '' && this.phone !== '') {
+                        this.localLoading = true
                         this.$store.dispatch('createOrder', {
                             name: this.name,
                             phone: this.phone,
                             adId: this.ad.id,
                             userId: this.ad.userId
+                        })
+                        .finally(() =>{
+                            this.localLoading = false
+                            this.name = ""
+                            this.phone = ""
+                            this.modal = false
                         })
                         this.modal = false
                     }
