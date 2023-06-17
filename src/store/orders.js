@@ -19,7 +19,7 @@ export default {
     },
 	actions: {
         async createOrder({commit},{name, phone, adId, userId}) {
-            let payload = new Order(name, phone, adId, userId, false, Math.random())
+            let payload = new Order(name, phone, adId, userId, false, 1)
             commit('clearError')
             //Заглушка запроса
             let isRequestOk = true
@@ -40,5 +40,10 @@ export default {
         }
             
     },
-	getters: {}
+	getters: {
+        orders (state, getters) {
+            if (getters.user == null) return []
+            return state.orders.filter(order => order.userId == getters.user.id)
+        }            
+    }
 }

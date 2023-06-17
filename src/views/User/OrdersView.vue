@@ -30,21 +30,18 @@
 	export default {
 		data () {
 			return {
-				orders: [
-					{
-					id:"123",
-					name:"Kostya",
-					phone:"+7(978)000-00-05",
-					adId:"1",
-					done:true
-					}
-				]
+				
 			}
 		},
 		methods: {
 			markDone(order) {
 				order.done = !order.done;
 					console.log(order.done);
+			}
+		},
+		computed: {
+			orders(){
+				return this.$store.getters.orders
 			}
 		} 
 	}
