@@ -4,6 +4,7 @@ import ads from './ads'
 import shared from './shared'
 import orders from './orders'
 
+
 const store = createStore({
     modules:{
         ads, user, shared, orders

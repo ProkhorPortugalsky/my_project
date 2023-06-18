@@ -5,6 +5,8 @@ class User {
     this.password = password
     }
 }
+// import fb from 'firebase/compat/app';
+import { fb } from '../main'
 export default {
 	state: {
         user: null
@@ -19,22 +21,15 @@ export default {
         async registerUser({commit},{email, password}) {
             commit('clearError')
             commit('setLoading', true)
-            //Здесь выполняется запрос на сервер
-            let isRequestOk = false
-            let promise = new Promise(function(resolve) {
-                setTimeout(() => resolve('Done'), 3000);
-            });
-            
-            
-            if (isRequestOk) {
-                await promise.then(()=> {
-                commit('setUser', new User(1, email, password))
-                commit('setLoading', false)})
-            } else {
-            await promise.then(()=> {
+            try {
+                const response = await 
+                fb.auth().createUserWithEmailAndPassword(email,password)
+                commit('setUser', new User(response.user.uid))
                 commit('setLoading', false)
-                commit('setError', 'Ошибка регистрации')
-                throw 'Упс... Ошибка регистрации'})
+            } catch( error ) {
+                commit('setLoading', false)
+                commit('setError', error.message)
+                throw error
             }
         },    
         async loginUser({commit},{email, password}) {
